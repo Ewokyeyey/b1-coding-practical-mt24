@@ -1,5 +1,5 @@
 def pd_controller(references, depths):
-
+    print('this is the x time this function is called')
     kp = 0.15
     kd = 0.6
     error_1 = references[1] - depths[1, 0] # error at time t
