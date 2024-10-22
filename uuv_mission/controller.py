@@ -1,9 +1,12 @@
-def pd_controller(references, depths):
-    print('this is the x time this function is called')
+def pd_controller(references, depths, time):
     kp = 0.15
     kd = 0.6
-    error_1 = references[1] - depths[1, 0] # error at time t
-    error_0 = references[0] - depths[0, 0] # error at time t-1
-    control_action = kp * error_0 + kd * (error_0 - error_1)
+    if time > 0:
+        error_1 = references[time] - depths[time, 1] # error at time t
+        error_0 = references[time-1] - depths[time-1, 1] # error at time t-1
+    else:
+        error_1 = references[time] - depths[time, 1] 
+        error_0 = 0
 
+    control_action = kp * error_1 + kd * (error_1 - error_0)
     return control_action

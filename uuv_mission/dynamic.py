@@ -113,8 +113,8 @@ class ClosedLoop:
             positions[t] = self.plant.get_position()
             observation_t = self.plant.get_depth()
             # Call your controller here
-            references = mission.reference[t-1:t+1]
-            actions[t] = controller.pd_controller(references, positions[t-1:t+1])
+            references = mission.reference
+            actions[t] = controller.pd_controller(references, positions, t)
 
             self.plant.transition(actions[t], disturbances[t])
 
